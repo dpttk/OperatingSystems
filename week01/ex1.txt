@@ -1,0 +1,5 @@
+/usr/bin/x86_64-w64-mingw32-gcc-ar
+/usr/bin/x86_64-w64-mingw32-gcc-12
+/usr/bin/x86_64-linux-gnu-gcc-nm
+/usr/bin/i686-w64-mingw32-gcc-nm-win32
+/usr/bin/i686-w64-mingw32-gcc-nm

@@ -1,0 +1,43 @@
+    1  sudo apt update
+    2  sudo apt full-upgrade -y
+    3  sudo apt install docker.io
+    4  sudo docker
+    5  sudo usermod -aG docker kali
+    6  exit
+    7  ex
+    8  docker run -dp 80:80 docker/getting-started:pwd
+    9  sudo systemctl enable docker --now
+   10  docker
+   11  sudo usermod 
+   12  sudo usermod -aG docker kali
+   13  nano namelist
+   14  cat namelist
+   15  sort namelist
+   16  sort namelist -r -n
+   17  ls > list.txt
+   18  head -n 3 < file.txt
+   19  cd proc
+   20  exit
+   21  ieaiaio
+   22  mkdir ~/week01
+   23  cd ~/week01
+   24  nano ex1.txt
+   25  ls
+   26  man find
+   27  find ~/usr/bit -name "*gcc*"> ex1.txt  | tail -n 5 | sort -r
+   28  find /usr/bit -name "*gcc*"> ex1.txt  | tail -n 5 | sort -r
+   29  /usr
+   30  /bit
+   31  /bin
+   32  ~/week01
+   33  find /usr/bin -name "*gcc*"> ex1.txt  | tail -n 5 | sort -r
+   34  ex1.txt
+   35  open ex1.txt
+   36  find /usr/bin -name "*gcc*" | tail -n 5 | sort -r > ex1.txt
+   37  open ex1.txt
+   38  nano ex1.sh
+   39  open ex1.sh
+   40  ex1.sh
+   41  exit 
+   42  history 
+   43  cd week01

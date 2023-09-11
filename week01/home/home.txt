@@ -1,0 +1,11 @@
+week01
+list.txt
+namelist
+Desktop
+Documents
+Downloads
+Music
+Pictures
+Public
+Templates
+Videos
