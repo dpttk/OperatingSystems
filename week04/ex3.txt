@@ -1,0 +1,11 @@
+Disclaimer: I am using kali linux 
+
+I see that in case of 3 forks, program runs 4 processes: 
+1 - main 
+1 - after first fork
+2 - after second fork
+After the second fork, 2 processes were called, because each of the working processes will execute the fork. In our case - main and process from the first fork.
+
+In case of 5 forks: 
+The same 4 processes are there.
+I suspect that only 4 processes are alive at the same time, because just after sleeping processes are going to terminate. So, in one moment of time we may see only 4 processes (in context of our program).
