@@ -1,0 +1,3 @@
+We may see how performance increase when we add additional threads till the number of threads increase for 100. 
+
+The reason for this is cost of thread creation. When we try to initialize 100 threads, initializing itself starts to take more time than execution.
