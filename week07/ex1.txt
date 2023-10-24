@@ -1,0 +1,8 @@
+First Fit: 119.416188
+Best Fit: 66.034609
+Worst Fit: 64.822662
+
+theese result was obtained by using large query 
+
+As we may see, the First Fit algorithm is significantly slower than others. 
+However, Best Fit and Worst Fit are close to eachother, especially in several runs.
