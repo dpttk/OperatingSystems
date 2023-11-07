@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-#define PASSWORD_LENGTH 13
+#define PASSWORD_LENGTH 8
 
 int main() {
     FILE *pidFile = fopen("/tmp/ex1.pid", "w");
@@ -32,5 +32,5 @@ int main() {
     strcpy(map_addr, password);
     printf("%s", password);
 
-    for(;;){}
+    while(1){}
 }

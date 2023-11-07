@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <stdbool.h>
 #include <sys/mman.h>
-#include <fcntl>
+#include <fcntl.h>
 #include <time.h>
 
 struct PTE {
@@ -15,36 +15,19 @@ struct PTE {
     int referenced;
 };
 
-void handle_SIGUSR1(int sig) {}
 
-int main(int argc, char *argv[]) {
-    int num_pages = atoi(argv[1);
-    int num_frames = atoi(argv[2);
 
-    int fd = open("/tmp/ex2/pagetable", O_RDWR);
+int num_pages;
+int num_frames;
+struct PTE *page_table;
+int num_loaded_pages;
+char ** disk;
+char ** RAM;
+int disk_accesses;
 
-    size_t page_table_size = sizeof(struct PTE) * num_pages;
 
-    struct PTE *page_table = mmap(NULL, page_table_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-
-    signal(SIGUSR1, handle_SIGUSR1);
-    char *RAM[num_frames];
-    for (int i = 0; i < num_frames; i++) {
-        RAM[i] = NULL;
-    }
-
-    char *disk[num_pages];
+void handle_SIGUSR1(int sig) {
     for (int i = 0; i < num_pages; i++) {
-        disk[i] = "Placeholder";
-    }
-
-    int disk_accesses = 0;
-    int num_loaded_pages = 0;
-
-    while (num_loaded_pages < num_pages) {
-        pause();
-
-        for (int i = 0; i < num_pages; i++) {
             if (page_table[i].referenced != 0) {
                 if (num_loaded_pages < num_frames) {
                     for (int j = 0; j < num_frames; j++) {
@@ -101,10 +84,54 @@ int main(int argc, char *argv[]) {
                 }
             }
         }
+}
+
+
+
+
+int main(int argc, char *argv[]) {
+     num_pages = atoi(argv[1]);
+     num_frames = atoi(argv[2]);
+
+    int fd = open("/tmp/ex2/pagetable", O_RDWR);
+
+    size_t page_table_size = sizeof(struct PTE) * num_pages;
+
+    page_table = mmap(NULL, page_table_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    
+
+    RAM = (char **) malloc(num_pages * sizeof(char*));
+    for (int i = 0; i < num_frames; i++) {
+        RAM[i] = (char * )malloc(sizeof(char));
     }
+
+    // random different strings here 
+    disk=(char **) malloc(num_pages * sizeof(char*));
+    for (int i = 0; i < num_pages; i++) {
+        disk[i] = (char * ) malloc(sizeof(char));
+        sprintf(disk[i],"Page%d",i); 
+    }
+ 
+    disk_accesses = 0;
+    num_loaded_pages = 0;
+
+    signal(SIGUSR1, handle_SIGUSR1);
+
+    while (num_loaded_pages < num_pages) {
+        pause();
+    }
+
     printf("%d disk accesses in total\n", disk_accesses);
 
     munmap(page_table, page_table_size);
+    for (int i = 0; i < num_pages; i++) {
+        free(RAM[i]);
+    }
+    free(RAM);
 
+    for (int i = 0; i < num_frames; i++) {
+        free(disk[i]);
+    }
+    free(disk);
     return 0;
 }
